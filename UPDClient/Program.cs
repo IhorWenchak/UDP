@@ -12,7 +12,10 @@ namespace UDPClient
 	{
 		static void Main(string[] args)
 		{
-			const string ip = "176.120.56.169";
+			Console.WriteLine("Enter the IP address:");
+
+			string ip = Console.ReadLine();
+			
 			const int port = 8082;
 
 			var udpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);

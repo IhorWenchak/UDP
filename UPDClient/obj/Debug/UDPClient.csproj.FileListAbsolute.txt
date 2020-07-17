@@ -10,3 +10,9 @@ E:\UDP\UPDClient\bin\Debug\UPDClient.pdb
 E:\UDP\UPDClient\obj\Debug\UDPClient.csproj.CoreCompileInputs.cache
 E:\UDP\UPDClient\obj\Debug\UPDClient.exe
 E:\UDP\UPDClient\obj\Debug\UPDClient.pdb
+E:\UDPConsole\UPDClient\bin\Debug\UPDClient.exe.config
+E:\UDPConsole\UPDClient\bin\Debug\UPDClient.exe
+E:\UDPConsole\UPDClient\bin\Debug\UPDClient.pdb
+E:\UDPConsole\UPDClient\obj\Debug\UDPClient.csproj.CoreCompileInputs.cache
+E:\UDPConsole\UPDClient\obj\Debug\UPDClient.exe
+E:\UDPConsole\UPDClient\obj\Debug\UPDClient.pdb

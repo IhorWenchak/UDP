@@ -10,3 +10,9 @@ E:\UDP\UDPServer\bin\Debug\UDPServer.pdb
 E:\UDP\UDPServer\obj\Debug\UDPServer.csproj.CoreCompileInputs.cache
 E:\UDP\UDPServer\obj\Debug\UDPServer.exe
 E:\UDP\UDPServer\obj\Debug\UDPServer.pdb
+E:\UDPConsole\UDPServer\bin\Debug\UDPServer.exe.config
+E:\UDPConsole\UDPServer\bin\Debug\UDPServer.exe
+E:\UDPConsole\UDPServer\bin\Debug\UDPServer.pdb
+E:\UDPConsole\UDPServer\obj\Debug\UDPServer.csproj.CoreCompileInputs.cache
+E:\UDPConsole\UDPServer\obj\Debug\UDPServer.exe
+E:\UDPConsole\UDPServer\obj\Debug\UDPServer.pdb
