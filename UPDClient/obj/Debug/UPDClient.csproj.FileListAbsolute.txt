@@ -1,0 +1,6 @@
+E:\UPDClient\UPDClient\bin\Debug\UPDClient.exe.config
+E:\UPDClient\UPDClient\bin\Debug\UPDClient.exe
+E:\UPDClient\UPDClient\bin\Debug\UPDClient.pdb
+E:\UPDClient\UPDClient\obj\Debug\UPDClient.csproj.CoreCompileInputs.cache
+E:\UPDClient\UPDClient\obj\Debug\UPDClient.exe
+E:\UPDClient\UPDClient\obj\Debug\UPDClient.pdb
