@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace UDPClient
 {
-	class Program
+	static class Program
 	{
 		static void Main(string[] args)
 		{			
@@ -58,5 +58,52 @@ namespace UDPClient
 				udpSocket.Close();
 			}
 		}
+
+		public static double Average(double[] arr)
+		{
+			
+			double sum = 0;
+			foreach (double elem in arr)
+			{
+				sum += elem;
+			}
+
+			return sum / arr.Length;
+		}
+
+		public static double Median(double[] arr)
+		{
+		
+			double[] copyArr = (double[])arr.Clone();
+			Array.Sort(copyArr);
+			return copyArr[copyArr.Length / 2];
+		}
+
+		public static double Mode(double[] arr)
+		{
+		
+			Dictionary<double, int> dict = new Dictionary<double, int>();
+			foreach (double elem in arr)
+			{
+				if (dict.ContainsKey(elem))
+					dict[elem]++;
+				else
+					dict[elem] = 1;
+			}
+
+			int maxCount = 0;
+			double mode = Double.NaN;
+			foreach (double elem in dict.Keys)
+			{
+				if (dict[elem] > maxCount)
+				{
+					maxCount = dict[elem];
+					mode = elem;
+				}
+			}
+
+			return mode;
+		}
+
 	}
 }
