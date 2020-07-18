@@ -28,25 +28,35 @@ namespace UDPClient
 
 			udpSocket.Bind(udpEndPoint);
 
-			while(true)
+			try
 			{
-				var buffer = new byte[256];
-				var size = 0;
-				var data = new StringBuilder();
-				EndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
-
-				do
+				while (true)
 				{
-					size = udpSocket.ReceiveFrom(buffer, ref senderEndPoint);
-					data.Append(Encoding.UTF8.GetString(buffer));
-					data.Append("\n");
+					var buffer = new byte[256];
+					var size = 0;
+					var data = new StringBuilder();
+					EndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
+
+					// ReceiveFrom() - блокирует вызывающий поток, пока не придет очередная порция данных.
+					do
+					{
+						size = udpSocket.ReceiveFrom(buffer, ref senderEndPoint);
+						data.Append(Encoding.UTF8.GetString(buffer));
+						data.Append("\n");
+					}
+					while (udpSocket.Available > 0);
+
+					Console.WriteLine(data);
 				}
-				while (udpSocket.Available > 0);
-
-				Console.WriteLine(data);
-
 			}
-
+			catch (Exception ex)
+			{
+				Console.WriteLine("An exception was thrown: " + ex.ToString() + "\n  " + ex.Message);
+			}
+			finally
+			{
+				udpSocket.Close();
+			}
 		}
 	}
 }

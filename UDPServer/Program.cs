@@ -35,7 +35,6 @@ namespace UDPServer
 				}
 			}
 
-
 			Console.WriteLine("Enter the IP address:");
 			
 			string ip = Console.ReadLine();
@@ -50,16 +49,29 @@ namespace UDPServer
 
 			Random rnd = new Random();
 
-			while (true)
-			{				
+			try
+			{
+				while (true)
+				{
 
-				double parcel = rnd.NextDouble(lowerBorder, topBorder);
+					double parcel = rnd.NextDouble(lowerBorder, topBorder);
 
-				var serverEndPoint = new IPEndPoint(IPAddress.Parse(ip), 8082); 
+					var serverEndPoint = new IPEndPoint(IPAddress.Parse(ip), 8082);
 
-				udpSocket.SendTo(Encoding.UTF8.GetBytes(parcel.ToString()), serverEndPoint);
+					udpSocket.SendTo(Encoding.UTF8.GetBytes(parcel.ToString()), serverEndPoint);
 
+				}
 			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("An exception was thrown: " + ex.ToString() + "\n  " + ex.Message);
+			}
+			finally
+			{
+				udpSocket.Close();
+			}
+
+
 
 		}
 
