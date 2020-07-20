@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using System.Xml.Linq;
 using System.Xml;
+using System.Threading;
 
 namespace UDPClient
 {
@@ -32,21 +33,17 @@ namespace UDPClient
 			{
 				while (true)
 				{
-					var buffer = new byte[256];
-					var size = 0;
-					var data = new StringBuilder();
-					EndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
+					Receiv receiv = new Receiv();
+					receiv.Socket = udpSocket;
+					receiv.Str = new StringBuilder();
 
-					// ReceiveFrom() - блокирует вызывающий поток, пока не придет очередная порция данных.
-					do
-					{
-						size = udpSocket.ReceiveFrom(buffer, ref senderEndPoint);
-						data.Append(Encoding.UTF8.GetString(buffer));
-						data.Append("\n");
-					}
-					while (udpSocket.Available > 0);
+					Thread tRec = new Thread(new ParameterizedThreadStart(Reciver));
+					tRec.Start(receiv);
 
-					Console.WriteLine(data);
+
+					Thread tOut = new Thread(new ParameterizedThreadStart(Output));
+					tOut.Start(receiv.Str);
+					
 				}
 			}
 			catch (Exception ex)
@@ -105,5 +102,36 @@ namespace UDPClient
 			return mode;
 		}
 
+		public class Receiv
+		{
+			public Socket Socket { get; set; }
+
+			public StringBuilder Str { get; set; }
+		}
+
+		public static void Reciver(object receiv)
+		{
+			var buffer = new byte[256];
+			var size = 0;
+
+			Receiv myReceiv = (Receiv)receiv;
+			Socket mySocket = (Socket)myReceiv.Socket;
+
+			EndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
+
+			do
+			{
+				size = mySocket.ReceiveFrom(buffer, ref senderEndPoint);
+				myReceiv.Str.Append(Encoding.UTF8.GetString(buffer));
+				myReceiv.Str.Append("\n");
+			}
+			while (mySocket.Available > 0);
+		}
+
+		public static void Output(object putout)
+		{
+			StringBuilder myOut = (StringBuilder)putout;
+			Console.WriteLine(myOut);
+		}
 	}
 }
